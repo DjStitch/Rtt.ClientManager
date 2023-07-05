@@ -9,7 +9,7 @@ namespace Rtt.ClientManager.DAL.Models;
 [Table("Clients")]
 public class Client
 {
-    [Key] public string Id { get; set; } = string.Empty;
+    [Key] public int ClientId { get; set; } 
 
     [MaxLength(50)] [Required] public string FirstName { get; set; } = string.Empty;
 
