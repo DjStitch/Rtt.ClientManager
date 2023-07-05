@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C86A6348-F3AC-4115-8B7C-7007130729A5}</ProjectGuid>
+    <ProjectGuid>{9E23E2EA-FF69-4F8C-8BED-508C13EB8A20}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rtt.ClientManager.WCF</RootNamespace>
-    <AssemblyName>Rtt.ClientManager.WCF</AssemblyName>
+    <RootNamespace>Rtt.ClientManager.WS</RootNamespace>
+    <AssemblyName>Rtt.ClientManager.WS</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -87,9 +87,9 @@
       <Project>{8a2dc325-8a50-4ad8-894d-90d92ba68215}</Project>
       <Name>Rtt.ClientManager.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rtt.ClientManager.DAL\Rtt.ClientManager.DAL.csproj">
-      <Project>{10441837-6D0B-4DFD-BB3E-4444E731A6D9}</Project>
-      <Name>Rtt.ClientManager.DAL</Name>
+    <ProjectReference Include="..\Rtt.ClientManager.Shared\Rtt.ClientManager.Shared.csproj">
+      <Project>{CEC7A5B2-8381-4DAD-BCBE-20DF53A7EB9C}</Project>
+      <Name>Rtt.ClientManager.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -105,9 +105,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51707</DevelopmentServerPort>
+          <DevelopmentServerPort>52641</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51707/</IISUrl>
+          <IISUrl>http://localhost:52641/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

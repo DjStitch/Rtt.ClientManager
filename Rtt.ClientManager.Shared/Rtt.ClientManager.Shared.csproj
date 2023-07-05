@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A2DC325-8A50-4AD8-894D-90D92BA68215}</ProjectGuid>
+    <ProjectGuid>{CEC7A5B2-8381-4DAD-BCBE-20DF53A7EB9C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rtt.ClientManager.BLL</RootNamespace>
-    <AssemblyName>Rtt.ClientManager.BLL</AssemblyName>
+    <RootNamespace>Rtt.ClientManager.Shared</RootNamespace>
+    <AssemblyName>Rtt.ClientManager.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,9 +30,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,18 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientManager.cs" />
+    <Compile Include="Address.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="ContactInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Rtt.ClientManager.DAL\Rtt.ClientManager.DAL.csproj">
-      <Project>{10441837-6d0b-4dfd-bb3e-4444e731a6d9}</Project>
-      <Name>Rtt.ClientManager.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rtt.ClientManager.Shared\Rtt.ClientManager.Shared.csproj">
-      <Project>{CEC7A5B2-8381-4DAD-BCBE-20DF53A7EB9C}</Project>
-      <Name>Rtt.ClientManager.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

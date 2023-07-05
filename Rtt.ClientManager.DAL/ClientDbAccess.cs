@@ -1,18 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using Rtt.ClientManager.DAL.Models;
-using RTT.ClientManager.DAL.Models;
+using System.IO;
+using Rtt.ClientManager.Shared;
 
 namespace Rtt.ClientManager.DAL;
 
 public class ClientDbAccess
 {
-    private readonly string _connectionString;
+    private string _connectionString;
 
-    public ClientDbAccess(string dbFilePath)
+    public void SetDbFile(string dbName = "RttDataBase.db")
     {
-        _connectionString = $"Data Source={dbFilePath};Version=3;";
+        const string path = @"C:\RTT";
+
+        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+
+        var filePath = Path.Combine(path, dbName);
+        _connectionString = $"Data Source={filePath};Version=3;";
     }
 
     public void CreateTablesIfNotExists()
@@ -53,6 +59,8 @@ public class ClientDbAccess
 
         using var command = new SQLiteCommand(query, connection);
         command.ExecuteNonQuery();
+
+        SeedDb();
     }
 
     public void AddClient(Client client)
@@ -90,6 +98,8 @@ public class ClientDbAccess
         using var command = new SQLiteCommand(query, connection);
         using var reader = command.ExecuteReader();
 
+     
+
         while (reader.Read())
         {
             var client = new Client
@@ -110,6 +120,47 @@ public class ClientDbAccess
 
         return clients;
     }
+
+    private void SeedDb()
+    {
+
+        using var connection = new SQLiteConnection(_connectionString);
+        connection.Open();
+
+        const string query = "SELECT * FROM Clients;";
+
+        using var command1 = new SQLiteCommand(query, connection);
+        using var reader = command1.ExecuteReader();
+
+        if (reader.HasRows != false) return;
+        const string sql = @"INSERT INTO Clients (ClientId, FirstName, LastName, Age, Gender, DateOfBirth, Nationality, IdentificationNumber, Occupation)
+                VALUES
+                    (1, 'Siya', 'Kolisi', 30, 'Male', '1991-06-16', 'South African', 'SA001', 'Rugby Player'),
+                    (2, 'Francois', 'Pienaar', 54, 'Male', '1967-01-02', 'South African', 'SA002', 'Rugby Player'),
+                    (3, 'Bryan', 'Habana', 38, 'Male', '1983-06-12', 'South African', 'SA003', 'Rugby Player'),
+                    (4, 'Joel', 'Stransky', 54, 'Male', '1967-07-16', 'South African', 'SA004', 'Rugby Player'),
+                    (5, 'Faf', 'de Klerk', 29, 'Male', '1991-10-19', 'South African', 'SA005', 'Rugby Player'),
+                    (6, 'Morné', 'Steyn', 37, 'Male', '1984-07-11', 'South African', 'SA006', 'Rugby Player'),
+                    (7, 'Victor', 'Matfield', 44, 'Male', '1977-05-11', 'South African', 'SA007', 'Rugby Player'),
+                    (8, 'Schalk', 'Burger', 38, 'Male', '1983-04-13', 'South African', 'SA008', 'Rugby Player'),
+                    (9, 'Bakkies', 'Botha', 42, 'Male', '1979-09-22', 'South African', 'SA009', 'Rugby Player'),
+                    (10, 'John', 'Smit', 44, 'Male', '1978-04-03', 'South African', 'SA010', 'Rugby Player'),
+                    (11, 'Fourie', 'du Preez', 39, 'Male', '1982-03-24', 'South African', 'SA011', 'Rugby Player'),
+                    (12, 'Jannie', 'du Plessis', 38, 'Male', '1982-05-16', 'South African', 'SA012', 'Rugby Player'),
+                    (13, 'Tendai', 'Mtawarira', 36, 'Male', '1985-08-01', 'South African', 'SA013', 'Rugby Player'),
+                    (14, 'Pieter-Steph', 'du Toit', 28, 'Male', '1992-08-20', 'South African', 'SA014', 'Rugby Player'),
+                    (15, 'Herschel', 'Jantjies', 25, 'Male', '1995-04-22', 'South African', 'SA015', 'Rugby Player'),
+                    (16, 'Handré', 'Pollard', 27, 'Male', '1994-03-11', 'South African', 'SA016', 'Rugby Player'),
+                    (17, 'Aphiwe', 'Dyantyi', 26, 'Male', '1994-08-02', 'South African', 'SA017', 'Rugby Player'),
+                    (18, 'Beast', 'Mtawarira', 36, 'Male', '1985-06-08', 'South African', 'SA018', 'Rugby Player'),
+                    (19, 'Duane', 'Vermeulen', 35, 'Male', '1986-07-03', 'South African', 'SA019', 'Rugby Player'),
+                    (20, 'Breyton', 'Paulse', 45, 'Male', '1976-07-28', 'South African', 'SA020', 'Rugby Player');
+                ";
+
+        using var command2 = new SQLiteCommand(sql, connection);
+        command2.ExecuteNonQuery();
+    }
+
 
 
     public int UpsertClient(Client client)
@@ -196,7 +247,6 @@ public class ClientDbAccess
         };
 
         return client;
-
     }
 
     public void AddAddress(Address address)

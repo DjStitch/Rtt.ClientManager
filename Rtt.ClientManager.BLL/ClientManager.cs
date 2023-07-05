@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Rtt.ClientManager.DAL;
-using Rtt.ClientManager.DAL.Models;
-using RTT.ClientManager.DAL.Models;
+using Rtt.ClientManager.Shared;
 
 namespace Rtt.ClientManager.BLL
 {
@@ -9,10 +8,19 @@ namespace Rtt.ClientManager.BLL
     {
         private readonly ClientDbAccess _clientDbAccess;
 
-        public ClientManager(string dbFilePath)
+
+        public ClientManager()
         {
-            _clientDbAccess = new ClientDbAccess(dbFilePath);
+            _clientDbAccess = new ClientDbAccess();
+            SetDataBaseFileName();
         }
+
+        public void SetDataBaseFileName()
+        {
+            _clientDbAccess.SetDbFile();
+            _clientDbAccess.CreateTablesIfNotExists();
+        }
+
 
         public void CreateTablesIfNotExists()
         {
