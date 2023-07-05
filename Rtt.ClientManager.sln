@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rtt.ClientManager.DAL", "Rtt.ClientManager.DAL\Rtt.ClientManager.DAL.csproj", "{10441837-6D0B-4DFD-BB3E-4444E731A6D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rtt.ClientManager.BLL", "Rtt.ClientManager.BLL\Rtt.ClientManager.BLL.csproj", "{8A2DC325-8A50-4AD8-894D-90D92BA68215}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{10441837-6D0B-4DFD-BB3E-4444E731A6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10441837-6D0B-4DFD-BB3E-4444E731A6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10441837-6D0B-4DFD-BB3E-4444E731A6D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2DC325-8A50-4AD8-894D-90D92BA68215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2DC325-8A50-4AD8-894D-90D92BA68215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2DC325-8A50-4AD8-894D-90D92BA68215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2DC325-8A50-4AD8-894D-90D92BA68215}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

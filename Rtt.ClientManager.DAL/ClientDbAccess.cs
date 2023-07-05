@@ -20,7 +20,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = @"
+        const string query = @"
         CREATE TABLE IF NOT EXISTS Clients (
             ClientId INTEGER PRIMARY KEY AUTOINCREMENT,
             FirstName TEXT NOT NULL,
@@ -60,7 +60,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = @"
+        const string query = @"
                 INSERT INTO Clients (FirstName, LastName, Age, Gender, DateOfBirth, Nationality, IdentificationNumber, Occupation)
                 VALUES (@FirstName, @LastName, @Age, @Gender, @DateOfBirth, @Nationality, @IdentificationNumber, @Occupation);
             ";
@@ -85,7 +85,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = "SELECT * FROM Clients;";
+        const string query = "SELECT * FROM Clients;";
 
         using var command = new SQLiteCommand(query, connection);
         using var reader = command.ExecuteReader();
@@ -128,7 +128,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = @"
+        const string query = @"
                 UPDATE Clients
                 SET FirstName = @FirstName,
                     LastName = @LastName,
@@ -160,7 +160,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = "DELETE FROM Clients WHERE ClientId = @ClientId;";
+        const string query = "DELETE FROM Clients WHERE ClientId = @ClientId;";
 
         using var command = new SQLiteCommand(query, connection);
         command.Parameters.AddWithValue("@ClientId", clientId);
@@ -181,25 +181,22 @@ public class ClientDbAccess
 
         using var reader = command.ExecuteReader();
 
-        if (reader.Read())
+        if (!reader.Read()) return null; // Client not found
+        var client = new Client
         {
-            var client = new Client
-            {
-                ClientId = Convert.ToInt32(reader["ClientId"]),
-                FirstName = reader["FirstName"].ToString(),
-                LastName = reader["LastName"].ToString(),
-                Age = Convert.ToInt32(reader["Age"]),
-                Gender = reader["Gender"].ToString(),
-                DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? null : Convert.ToDateTime(reader["DateOfBirth"]),
-                Nationality = reader["Nationality"].ToString(),
-                IdentificationNumber = reader["IdentificationNumber"].ToString(),
-                Occupation = reader["Occupation"].ToString()
-            };
+            ClientId = Convert.ToInt32(reader["ClientId"]),
+            FirstName = reader["FirstName"].ToString(),
+            LastName = reader["LastName"].ToString(),
+            Age = Convert.ToInt32(reader["Age"]),
+            Gender = reader["Gender"].ToString(),
+            DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? null : Convert.ToDateTime(reader["DateOfBirth"]),
+            Nationality = reader["Nationality"].ToString(),
+            IdentificationNumber = reader["IdentificationNumber"].ToString(),
+            Occupation = reader["Occupation"].ToString()
+        };
 
-            return client;
-        }
+        return client;
 
-        return null; // Client not found
     }
 
     public void AddAddress(Address address)
@@ -227,7 +224,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = @"
+        const string query = @"
         INSERT INTO ContactInformation (ContactType, Number, ClientId)
         VALUES (@ContactType, @Number, @ClientId);
     ";
@@ -245,7 +242,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = "DELETE FROM Addresses WHERE AddressId = @AddressId;";
+        const string query = "DELETE FROM Addresses WHERE AddressId = @AddressId;";
 
         using var command = new SQLiteCommand(query, connection);
         command.Parameters.AddWithValue("@AddressId", addressId);
@@ -258,7 +255,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = "DELETE FROM ContactInformation WHERE ContactId = @ContactId;";
+        const string query = "DELETE FROM ContactInformation WHERE ContactId = @ContactId;";
 
         using var command = new SQLiteCommand(query, connection);
         command.Parameters.AddWithValue("@ContactId", contactId);
@@ -271,7 +268,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = @"
+        const string query = @"
         UPDATE Addresses
         SET AddressType = @AddressType,
             Address1 = @Address1,
@@ -297,7 +294,7 @@ public class ClientDbAccess
         using var connection = new SQLiteConnection(_connectionString);
         connection.Open();
 
-        var query = @"
+        const string query = @"
         UPDATE ContactInformation
         SET ContactType = @ContactType,
             Number = @Number,
