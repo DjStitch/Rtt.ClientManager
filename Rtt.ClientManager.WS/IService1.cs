@@ -41,6 +41,9 @@ namespace Rtt.ClientManager.WS
         Client Upsert(Client updClient);
 
 
+        [OperationContract]
+        Client GetClientDetails(int clientId);
+
 
         // TODO: Add your service operations here
     }

@@ -34,6 +34,7 @@
             this.textBoxNationality = new System.Windows.Forms.TextBox();
             this.textBoxIdentificationNumber = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.Occupation = new System.Windows.Forms.Label();
@@ -45,14 +46,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxDateOfBirth = new System.Windows.Forms.TextBox();
             this.textBoxGender = new System.Windows.Forms.TextBox();
             this.textBoxAge = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.bRefreash = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
+            this.listViewAddresses = new System.Windows.Forms.ListView();
+            this.listViewContactInfo = new System.Windows.Forms.ListView();
+            this.textBoxDateOfBirth = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,9 +66,9 @@
             this.listViewClients.FullRowSelect = true;
             this.listViewClients.GridLines = true;
             this.listViewClients.HideSelection = false;
-            this.listViewClients.Location = new System.Drawing.Point(12, 12);
+            this.listViewClients.Location = new System.Drawing.Point(12, 33);
             this.listViewClients.Name = "listViewClients";
-            this.listViewClients.Size = new System.Drawing.Size(754, 193);
+            this.listViewClients.Size = new System.Drawing.Size(754, 172);
             this.listViewClients.TabIndex = 0;
             this.listViewClients.UseCompatibleStateImageBehavior = false;
             this.listViewClients.View = System.Windows.Forms.View.Details;
@@ -71,7 +76,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(68, 415);
+            this.progressBar.Location = new System.Drawing.Point(16, 153);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(487, 23);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -105,9 +110,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnCreate);
-            this.groupBox1.Controls.Add(this.btnUpdate);
-            this.groupBox1.Controls.Add(this.btnDelete);
+            this.groupBox1.Controls.Add(this.textBoxDateOfBirth);
             this.groupBox1.Controls.Add(this.Occupation);
             this.groupBox1.Controls.Add(this.textBoxOccupation);
             this.groupBox1.Controls.Add(this.label7);
@@ -115,9 +118,9 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.progressBar);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBoxDateOfBirth);
             this.groupBox1.Controls.Add(this.textBoxNationality);
             this.groupBox1.Controls.Add(this.textBoxIdentificationNumber);
             this.groupBox1.Controls.Add(this.textBoxGender);
@@ -132,9 +135,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Client Details";
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(981, 415);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(114, 37);
+            this.btnCreate.TabIndex = 36;
+            this.btnCreate.Tag = "1";
+            this.btnCreate.Text = "Create Client";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(16, 149);
+            this.btnUpdate.Location = new System.Drawing.Point(741, 415);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(114, 37);
             this.btnUpdate.TabIndex = 35;
@@ -144,7 +158,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(136, 149);
+            this.btnDelete.Location = new System.Drawing.Point(861, 414);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(114, 37);
             this.btnDelete.TabIndex = 34;
@@ -232,13 +246,6 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "First Name";
             // 
-            // textBoxDateOfBirth
-            // 
-            this.textBoxDateOfBirth.Location = new System.Drawing.Point(635, 44);
-            this.textBoxDateOfBirth.Name = "textBoxDateOfBirth";
-            this.textBoxDateOfBirth.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDateOfBirth.TabIndex = 23;
-            // 
             // textBoxGender
             // 
             this.textBoxGender.Location = new System.Drawing.Point(493, 44);
@@ -276,38 +283,89 @@
             // 
             // bRefreash
             // 
-            this.bRefreash.Location = new System.Drawing.Point(639, 415);
+            this.bRefreash.Location = new System.Drawing.Point(1116, 414);
             this.bRefreash.Name = "bRefreash";
             this.bRefreash.Size = new System.Drawing.Size(114, 37);
             this.bRefreash.TabIndex = 34;
             this.bRefreash.Text = "Refresh List";
             this.bRefreash.UseVisualStyleBackColor = true;
             // 
-            // btnCreate
+            // listViewAddresses
             // 
-            this.btnCreate.Location = new System.Drawing.Point(261, 149);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(114, 37);
-            this.btnCreate.TabIndex = 36;
-            this.btnCreate.Tag = "1";
-            this.btnCreate.Text = "Create Client";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            this.listViewAddresses.HideSelection = false;
+            this.listViewAddresses.Location = new System.Drawing.Point(791, 33);
+            this.listViewAddresses.Name = "listViewAddresses";
+            this.listViewAddresses.Size = new System.Drawing.Size(439, 172);
+            this.listViewAddresses.TabIndex = 35;
+            this.listViewAddresses.UseCompatibleStateImageBehavior = false;
+            // 
+            // listViewContactInfo
+            // 
+            this.listViewContactInfo.HideSelection = false;
+            this.listViewContactInfo.Location = new System.Drawing.Point(791, 234);
+            this.listViewContactInfo.Name = "listViewContactInfo";
+            this.listViewContactInfo.Size = new System.Drawing.Size(439, 159);
+            this.listViewContactInfo.TabIndex = 36;
+            this.listViewContactInfo.UseCompatibleStateImageBehavior = false;
+            // 
+            // textBoxDateOfBirth
+            // 
+            this.textBoxDateOfBirth.Location = new System.Drawing.Point(635, 44);
+            this.textBoxDateOfBirth.Mask = "0000/00/00";
+            this.textBoxDateOfBirth.Name = "textBoxDateOfBirth";
+            this.textBoxDateOfBirth.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDateOfBirth.TabIndex = 37;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(13, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 22);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Client Details";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(787, 8);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 22);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "Addresses";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(787, 209);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 22);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Contact Details";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 464);
+            this.ClientSize = new System.Drawing.Size(1257, 464);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.listViewContactInfo);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.listViewAddresses);
             this.Controls.Add(this.bRefreash);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.listViewClients);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rtt Rugby Client Manager V1";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -324,7 +382,6 @@
         private System.Windows.Forms.TextBox textBoxNationality;
         private System.Windows.Forms.TextBox textBoxIdentificationNumber;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBoxDateOfBirth;
         private System.Windows.Forms.TextBox textBoxGender;
         private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.TextBox textBox5;
@@ -343,6 +400,12 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button bRefreash;
+        private System.Windows.Forms.ListView listViewAddresses;
+        private System.Windows.Forms.ListView listViewContactInfo;
+        private System.Windows.Forms.MaskedTextBox textBoxDateOfBirth;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

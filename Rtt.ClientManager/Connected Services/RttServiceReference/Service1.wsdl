@@ -56,6 +56,12 @@
   <wsdl:message name="IService1_Upsert_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpsertResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetClientDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientDetails" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetClientDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientDetailsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -88,6 +94,10 @@
     <wsdl:operation name="Upsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/Upsert" message="tns:IService1_Upsert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpsertResponse" message="tns:IService1_Upsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetClientDetails" message="tns:IService1_GetClientDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetClientDetailsResponse" message="tns:IService1_GetClientDetails_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -157,6 +167,15 @@
     </wsdl:operation>
     <wsdl:operation name="Upsert">
       <soap:operation soapAction="http://tempuri.org/IService1/Upsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientDetails">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetClientDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

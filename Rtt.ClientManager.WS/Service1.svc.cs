@@ -62,5 +62,10 @@ namespace Rtt.ClientManager.WS
             Client.UpsertClient(updClient);
             return updClient;
         }
+
+        public Client GetClientDetails(int clientId)
+        {
+            return Client.GetClientById(clientId);
+        }
     }
 }

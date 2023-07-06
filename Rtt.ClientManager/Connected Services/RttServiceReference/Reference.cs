@@ -125,6 +125,12 @@ namespace Rtt.ClientManager.RttServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Upsert", ReplyAction="http://tempuri.org/IService1/UpsertResponse")]
         System.Threading.Tasks.Task<Rtt.ClientManager.Shared.Client> UpsertAsync(Rtt.ClientManager.Shared.Client updClient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetClientDetails", ReplyAction="http://tempuri.org/IService1/GetClientDetailsResponse")]
+        Rtt.ClientManager.Shared.Client GetClientDetails(int clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetClientDetails", ReplyAction="http://tempuri.org/IService1/GetClientDetailsResponse")]
+        System.Threading.Tasks.Task<Rtt.ClientManager.Shared.Client> GetClientDetailsAsync(int clientId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -216,6 +222,14 @@ namespace Rtt.ClientManager.RttServiceReference {
         
         public System.Threading.Tasks.Task<Rtt.ClientManager.Shared.Client> UpsertAsync(Rtt.ClientManager.Shared.Client updClient) {
             return base.Channel.UpsertAsync(updClient);
+        }
+        
+        public Rtt.ClientManager.Shared.Client GetClientDetails(int clientId) {
+            return base.Channel.GetClientDetails(clientId);
+        }
+        
+        public System.Threading.Tasks.Task<Rtt.ClientManager.Shared.Client> GetClientDetailsAsync(int clientId) {
+            return base.Channel.GetClientDetailsAsync(clientId);
         }
     }
 }
